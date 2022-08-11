@@ -15,6 +15,7 @@ import { addCard, moveCards, removeCards } from "./store/actions/cardAction";
 import { fetchAllBuckets } from "./store/actions/bucketAction";
 import { fetchPrevHistory } from "./store/actions/historyAction";
 import { DeleteModal } from "./components/DeleteModal";
+import Hero from "./components/Hero";
 
 function App({
   cards = [],
@@ -56,6 +57,7 @@ function App({
 
   return (
     <div className="relative bg-blue-50">
+      <Hero />
       <CreateBucket />
       <Modal open={formOpen} setOpen={() => setFormOpen(false)}>
         <Dialog.Title
@@ -109,9 +111,9 @@ function App({
           Choose bucket
         </h2>
         <BucketSelector />
-        <div className="w-full flex justify-center gap-3">
+        <div className="w-full flex justify-center gap-4">
           <Button
-            className="w-full md:w-fit py-3 md:px-8 bg-green-500 flex gap-2 items-center justify-center hover:bg-green-600 text-white"
+            className="w-60 py-3 md:px-8 bg-green-500 flex gap-2 items-center justify-center hover:bg-green-600 text-white"
             onClick={() => setFormOpen(true)}
           >
             <svg className="w-4 h-4 fill-white shrink-0" viewBox="0 0 16 16">
@@ -120,12 +122,16 @@ function App({
             Add Card
           </Button>
           <Button
-            className="w-full md:w-fit py-3 md:px-8 bg-red-500 flex gap-2 items-center justify-center hover:bg-red-600 text-white"
+            className="w-60 py-3 md:px-8 bg-red-500 flex gap-2 items-center justify-center hover:bg-red-600 text-white"
             onClick={() => setMultiSelectOverlay(!multiSelectOverlay)}
           >
-            Select Multiple
+            Delete Cards
           </Button>
         </div>
+        <p className="text-justify max-w-lg mx-auto my-6">
+          To delete multiple cards first click "Delete Multiple Cards" and then
+          click the card you want to delete a small popup will appear at bottom
+        </p>
         <hr className="mb-8 mt-4" />
         <CardContainer>
           {cards.length ? (

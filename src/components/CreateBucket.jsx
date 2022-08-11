@@ -32,6 +32,10 @@ function CreateBucket({ addBucket }) {
           Add Bucket
         </Button>
       </div>
+      <p className="text-center my-4 mb-8">
+        User can create bucket of their choice. Initially bucket is empty user
+        have to add cards of their own
+      </p>
     </div>
   );
 }

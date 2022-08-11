@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import { connect } from "react-redux";
-// import { addBucket } from "../store/actions/bucketAction";
 
 function History({ history = [] }) {
   const [size, setSize] = useState(Math.min(history.length, 5));
@@ -16,7 +15,7 @@ function History({ history = [] }) {
         History
         <br />
         <span className="text-lg font-medium text-gray-700">
-          History of all of your played videos
+          History of all of your played videos.
         </span>
       </h2>
       <div className="my-4 flex flex-col gap-4">
