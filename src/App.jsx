@@ -19,10 +19,8 @@ import Hero from "./components/Hero";
 
 function App({
   cards = [],
-  state,
   bucket,
   addCard,
-  moveCards,
   removeCards,
   fetchAllBuckets,
   fetchPrevHistory,
@@ -30,11 +28,8 @@ function App({
   const [formOpen, setFormOpen] = useState(false);
   const [multiSelectOverlay, setMultiSelectOverlay] = useState(false);
   const [itemSelected, setItemSelected] = useState({});
-  const [multiMoveModal, setMultiMoveModal] = useState(false);
   const [multiDeleteModal, setMultiDeleteModal] = useState(false);
   const [formData, setFormData] = useState({});
-
-  console.log({ state });
 
   const handleItemSelect = (item) => {
     setItemSelected({ ...itemSelected, [item]: !itemSelected[item] });
@@ -97,14 +92,8 @@ function App({
         itemSelected={itemSelected}
         multiSelectOverlay={multiSelectOverlay}
         setMultiDeleteModal={setMultiDeleteModal}
-        setMultiMoveModal={setMultiMoveModal}
         multiSelectOverlayClose={multiSelectOverlayClose}
       />
-      {/* <MoveModal
-        moveModalOpen={multiMoveModal}
-        setMoveModalOpen={setMultiMoveModal}
-        handleMultiMove={handleMultiMove}
-      /> */}
       <DeleteModal
         deleteModalOpen={multiDeleteModal}
         setDeleteModalOpen={setMultiDeleteModal}
@@ -165,7 +154,6 @@ function App({
 
 const mapStateToProps = (state) => {
   return {
-    state,
     cards: state.card.cards,
     bucket: state.bucket.selected,
   };

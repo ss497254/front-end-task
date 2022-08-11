@@ -3,10 +3,10 @@ import Button from "./Button";
 import { connect } from "react-redux";
 
 function History({ history = [] }) {
-  const [size, setSize] = useState(Math.min(history.length, 5));
+  const [size, setSize] = useState(Math.min(history.length, 4));
 
   useEffect(() => {
-    setSize(Math.min(history.length, 5));
+    setSize(Math.min(history.length, 4));
   }, [history]);
 
   return (
@@ -47,7 +47,7 @@ function History({ history = [] }) {
       </div>
       <Button
         className="mx-auto my-6 w-fit py-2 px-6 bg-blue-500 flex items-center justify-center hover:bg-blue-600 text-white"
-        onClick={() => setSize(Math.min(history.length, size + 5))}
+        onClick={() => setSize(Math.min(history.length, size + 4))}
       >
         {size === history.length ? "No More" : "Show More"}
       </Button>

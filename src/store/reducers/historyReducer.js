@@ -2,7 +2,6 @@ import * as actionTypes from "../actions/types";
 export const initialState = [];
 
 const historyReducer = (state = initialState, action) => {
-  console.log({ action });
   switch (action.type) {
     case actionTypes.ADD_HISTORY: {
       return [...state, action.payload];

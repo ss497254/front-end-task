@@ -16,7 +16,7 @@ export const fetchPrevHistory = () => (dispatch) => {
 
 export const addHistory = (value) => (dispatch) => {
   axios.post(API_URL + "/history", { data: value }).then((res) => {
-    if (typeof res.data === "object") {
+    if (res.data === "Done") {
       dispatch({
         type: actionTypes.ADD_HISTORY,
         payload: value,
