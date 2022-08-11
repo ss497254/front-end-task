@@ -67,6 +67,11 @@ function App({
           Create Card
         </Dialog.Title>
         <CardForm setFormData={setFormData} />
+        <p className="text-center text-xs my-8 ">
+          Card has youtube video embeded into it, user do not have to only
+          provide card title and content. <br />
+          User can also create dummy card just by pressing save button.
+        </p>
         <div className="px-4 md:px-6 py-3 md:py-4 gap-4 bg-gray-200 flex flex-row-reverse">
           <button
             type="button"
@@ -128,7 +133,7 @@ function App({
             Delete Cards
           </Button>
         </div>
-        <p className="text-justify max-w-lg mx-auto my-6">
+        <p className="text-justify text-xs max-w-lg mx-auto my-6">
           To delete multiple cards first click "Delete Multiple Cards" and then
           click the card you want to delete a small popup will appear at bottom
         </p>

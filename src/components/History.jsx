@@ -23,7 +23,7 @@ function History({ history = [] }) {
           history.slice(0, size).map((item, index) => (
             <div
               key={index}
-              className="text-gray-700 bg-white p-6 border-2 rounded-md"
+              className="text-gray-700 bg-white p-6 border-2 rounded-md overflow-hidden"
             >
               <div className="flex pb-3 text-xl">
                 {item?.name}
@@ -33,8 +33,11 @@ function History({ history = [] }) {
                   {new Date(item?.date).toLocaleTimeString()}
                 </div>
               </div>
-              <a href={item?.link} className="text-blue-600">
-                {item?.link}
+              <a
+                href={item?.link}
+                className="text-blue-600 truncate break-words"
+              >
+                Video Link
               </a>
             </div>
           ))
