@@ -5,19 +5,11 @@ const historyReducer = (state = initialState, action) => {
   console.log({ action });
   switch (action.type) {
     case actionTypes.ADD_HISTORY: {
-      return {
-        ...state,
-        buckets: [...state.buckets, { name: action.payload }],
-      };
+      return [...state, action.payload];
     }
 
-    case actionTypes.REMOVE_BUCKET: {
-      return {
-        ...state,
-        buckets: state.buckets.filter(
-          (bucket) => bucket.name !== action.payload
-        ),
-      };
+    case actionTypes.SET_HISTORY: {
+      return action.payload;
     }
 
     default:

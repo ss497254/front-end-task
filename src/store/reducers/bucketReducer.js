@@ -18,7 +18,6 @@ const bucketReducer = (state = initialState, action) => {
       return {
         ...state,
         buckets: [...state.buckets, { name: action.payload }],
-        selected: state.selected ? state.selected : { name: action.payload },
       };
     }
 

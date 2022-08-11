@@ -13,7 +13,7 @@ function CreateBucket({ addBucket }) {
   };
 
   return (
-    <div className="w-full mx-auto bg-red p-5 max-w-lg">
+    <div className="w-full mx-auto bg-red p-5 md:px-0 max-w-lg">
       <h2 className="my-10 mx-auto text-center text-3xl font-semibold md:text-4xl">
         Create bucket
       </h2>
@@ -22,7 +22,7 @@ function CreateBucket({ addBucket }) {
           type="text"
           value={bucketName}
           autoComplete="off"
-          className="w-full p-2 px-4 bg-white outline-none border border-gray-300 rounded-md"
+          className="w-full p-2 px-6 bg-white outline-none border border-gray-300 rounded-md"
           onChange={(e) => setBucketName(e.target.value)}
         />
         <Button

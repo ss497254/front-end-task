@@ -4,9 +4,11 @@ import CardForm from "./CardForm";
 import Modal from "./Modal";
 import { connect } from "react-redux";
 import { editCard, removeCards } from "../store/actions/cardAction";
+import { addHistory } from "../store/actions/historyAction";
 import { DeleteModal } from "./DeleteModal";
 
 function Card({
+  addHistory,
   multiSelect = false,
   isSelected,
   title,
@@ -30,10 +32,10 @@ function Card({
   return (
     <div
       onClick={handleMultiSelect}
-      className={`${multiSelect && "cursor-pointer"}`}
+      className={`h-full w-full ${multiSelect && "cursor-pointer"}`}
     >
       <div
-        className={`flex justify-center lg:w-96 ${
+        className={`flex justify-center h-full w-full lg:w-96 ${
           multiSelect && "pointer-events-none"
         }`}
       >
@@ -93,8 +95,8 @@ function Card({
             setDeleteModalOpen(false);
           }}
         />
-        <div className="rounded-lg shadow-lg bg-white w-full">
-          <div>
+        <div className="rounded-lg shadow-lg bg-white w-full flex flex-col">
+          <div className="h-[200px]">
             <iframe
               className="w-full rounded-t-md"
               height="200"
@@ -107,7 +109,8 @@ function Card({
           </div>
           <div
             className={
-              "p-6 h-52 flex flex-col " + (isSelected && "bg-blue-100")
+              "p-6 min-h-[210px] h-full flex flex-col " +
+              (isSelected && "bg-blue-100")
             }
           >
             <h5 className="text-gray-900 text-xl font-medium mb-2">{title}</h5>
@@ -116,7 +119,10 @@ function Card({
               <button
                 type="button"
                 className="inline-flex w-full justify-center rounded-md border border-transparent bg-emerald-500 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-[3px] focus:ring-blue-300"
-                onClick={() => setViewOpen(true)}
+                onClick={() => {
+                  addHistory({ name: title, date: new Date(), link: url });
+                  setViewOpen(true);
+                }}
               >
                 View
               </button>
@@ -148,4 +154,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { editCard, removeCards })(Card);
+export default connect(mapStateToProps, { editCard, removeCards, addHistory })(
+  Card
+);

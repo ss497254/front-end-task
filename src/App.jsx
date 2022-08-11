@@ -13,8 +13,8 @@ import Modal from "./components/Modal";
 import MultiSelectOverlay from "./components/MultiSelectOverlay";
 import { addCard, moveCards, removeCards } from "./store/actions/cardAction";
 import { fetchAllBuckets } from "./store/actions/bucketAction";
+import { fetchPrevHistory } from "./store/actions/historyAction";
 import { DeleteModal } from "./components/DeleteModal";
-import { MoveModal } from "./components/MoveModal";
 
 function App({
   cards = [],
@@ -24,6 +24,7 @@ function App({
   moveCards,
   removeCards,
   fetchAllBuckets,
+  fetchPrevHistory,
 }) {
   const [formOpen, setFormOpen] = useState(false);
   const [multiSelectOverlay, setMultiSelectOverlay] = useState(false);
@@ -44,16 +45,14 @@ function App({
   };
 
   const handleMultiDelete = () => {
-    removeCards(itemSelected);
+    removeCards(bucket.name, itemSelected);
     setItemSelected({});
   };
 
-  const handleMultiMove = () => {
-    moveCards(itemSelected);
-    setItemSelected({});
-  };
-
-  useEffect(() => fetchAllBuckets(), []);
+  useEffect(() => {
+    fetchAllBuckets();
+    fetchPrevHistory();
+  }, []);
 
   return (
     <div className="relative bg-blue-50">
@@ -78,10 +77,7 @@ function App({
             type="button"
             className="inline-flex w-28 justify-center rounded-md border border-transparent bg-emerald-500 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-[3px] focus:ring-blue-300"
             onClick={() => {
-              addCard(bucket.name, {
-                ...formData,
-                url: "https://www.youtube.com/embed/ud8QZIdBxPw",
-              });
+              addCard(bucket.name, formData);
               setFormOpen(false);
               setFormData({});
             }}
@@ -97,28 +93,25 @@ function App({
         setMultiMoveModal={setMultiMoveModal}
         multiSelectOverlayClose={multiSelectOverlayClose}
       />
-      <MoveModal
+      {/* <MoveModal
         moveModalOpen={multiMoveModal}
         setMoveModalOpen={setMultiMoveModal}
         handleMultiMove={handleMultiMove}
-      />
+      /> */}
       <DeleteModal
         deleteModalOpen={multiDeleteModal}
         setDeleteModalOpen={setMultiDeleteModal}
         handleDelete={handleMultiDelete}
       />
 
-      <div
-        id="main"
-        className="min-h-screen py-8 px-4 md:px-12 bg-gray-50 pb-16"
-      >
+      <div id="main" className="py-8 px-4 md:px-12 bg-gray-50 pb-16">
         <h2 className="my-10 mx-auto text-center text-3xl font-semibold md:text-4xl">
           Choose bucket
         </h2>
         <BucketSelector />
         <div className="w-full flex justify-center gap-3">
           <Button
-            className="w-full md:w-fit py-3 md:px-8 bg-blue-500 flex gap-2 items-center justify-center hover:bg-blue-600 text-white"
+            className="w-full md:w-fit py-3 md:px-8 bg-green-500 flex gap-2 items-center justify-center hover:bg-green-600 text-white"
             onClick={() => setFormOpen(true)}
           >
             <svg className="w-4 h-4 fill-white shrink-0" viewBox="0 0 16 16">
@@ -127,7 +120,7 @@ function App({
             Add Card
           </Button>
           <Button
-            className="w-full md:w-fit py-3 md:px-8 bg-green-500 flex gap-2 items-center justify-center hover:bg-green-600 text-white"
+            className="w-full md:w-fit py-3 md:px-8 bg-red-500 flex gap-2 items-center justify-center hover:bg-red-600 text-white"
             onClick={() => setMultiSelectOverlay(!multiSelectOverlay)}
           >
             Select Multiple
@@ -135,18 +128,22 @@ function App({
         </div>
         <hr className="mb-8 mt-4" />
         <CardContainer>
-          {cards.map((card, index) => (
-            <Card
-              key={index}
-              multiSelect={multiSelectOverlay}
-              url={card?.url}
-              id={card.id}
-              title={card.title}
-              content={card.content}
-              onItemSelect={() => handleItemSelect(card.id)}
-              isSelected={itemSelected[card.id]}
-            />
-          ))}
+          {cards.length ? (
+            cards.map((card, index) => (
+              <Card
+                key={index}
+                multiSelect={multiSelectOverlay}
+                url={card?.url}
+                id={card.id}
+                title={card.title}
+                content={card.content}
+                onItemSelect={() => handleItemSelect(card.id)}
+                isSelected={itemSelected[card.id]}
+              />
+            ))
+          ) : (
+            <div className="text-xl p-6">No cards present</div>
+          )}
         </CardContainer>
       </div>
       <History />
@@ -168,4 +165,5 @@ export default connect(mapStateToProps, {
   moveCards,
   removeCards,
   fetchAllBuckets,
+  fetchPrevHistory,
 })(App);

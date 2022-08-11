@@ -53,20 +53,20 @@ export default function MutlitSelectOverlay({
               </svg>
             </button>
           </div>
-          <div className="flex gap-4">
+          <Button
+            className="py-2 px-3 w-60 bg-red-500 flex gap-2 items-center justify-center hover:bg-red-600 text-white"
+            onClick={() => setMultiDeleteModal(true)}
+          >
+            Delete Multiple
+          </Button>
+          {/* <div className="flex gap-4">
             <Button
               className="py-2 px-3 bg-blue-500 flex gap-2 items-center justify-center hover:bg-blue-600 text-white"
               onClick={() => setMultiMoveModal(true)}
             >
               Move Multiple
             </Button>
-            <Button
-              className="py-2 px-3 bg-red-500 flex gap-2 items-center justify-center hover:bg-red-600 text-white"
-              onClick={() => setMultiDeleteModal(true)}
-            >
-              Delete Multiple
-            </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

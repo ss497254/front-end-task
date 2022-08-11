@@ -1,3 +1,4 @@
+export const SET_HISTORY = "SET_HISTORY";
 export const ADD_HISTORY = "ADD_HISTORY";
 export const ADD_BUCKET = "ADD_BUCKET";
 export const REMOVE_BUCKET = "REMOVE_BUCKET";
