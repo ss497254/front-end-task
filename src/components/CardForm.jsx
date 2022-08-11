@@ -7,7 +7,7 @@ export default function CardForm({ setFormData }) {
   useEffect(
     () =>
       setFormData({
-        title: "Some Title",
+        title: "Card Title",
         content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eum quo commodi alias, odit facere aspernatur",
       }),

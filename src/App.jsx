@@ -67,7 +67,7 @@ function App({
           Create Card
         </Dialog.Title>
         <CardForm setFormData={setFormData} />
-        <p className="text-center text-xs my-8 ">
+        <p className="text-center text-xs my-4 px-5 break-words">
           Card has youtube video embeded into it, user do not have to only
           provide card title and content. <br />
           User can also create dummy card just by pressing save button.
